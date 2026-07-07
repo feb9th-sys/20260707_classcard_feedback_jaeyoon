@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>홍재윤 오답 피드백 - 가정법 과거완료 &amp; 관계부사</title>
+<style>
+  body {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    background: #f4f6fb;
+    margin: 0;
+    padding: 0;
+    color: #222;
+    line-height: 1.7;
+  }
+  .header {
+    background: #1a2744;
+    color: #fff;
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .header h1 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+  }
+  .header p {
+    margin: 0;
+    font-size: 16px;
+    color: #cdd6e8;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+  .section-title {
+    font-size: 52px;
+    font-weight: 800;
+    color: #1a2744;
+    margin: 48px 0 20px 0;
+    text-align: center;
+    letter-spacing: -1px;
+  }
+  .section-sub {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 32px;
+    font-size: 15px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid #e8ecf3;
+  }
+  .card.correct {
+    border-left: 6px solid #2ecc71;
+  }
+  .card.wrong {
+    border-left: 6px solid #e74c3c;
+  }
+  .q-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .badge {
+    background: #2f5fe0;
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .q-sentence {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a2744;
+  }
+  .blank {
+    display: inline-block;
+    min-width: 90px;
+    border: 2px solid #2f5fe0;
+    background: #fff;
+    border-radius: 6px;
+    padding: 2px 10px;
+    text-align: center;
+    font-weight: 700;
+  }
+  .student-answer-box {
+    margin: 14px 0;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+  }
+  .student-answer-box.wrong {
+    background: #fdecea;
+    color: #c0392b;
+  }
+  .student-answer-box.correct {
+    background: #eafaf1;
+    color: #1e8449;
+  }
+  .student-answer-box .label {
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .status-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+  }
+  .status-tag.wrong { background: #e74c3c; color: #fff; }
+  .status-tag.correct { background: #2ecc71; color: #fff; }
+  .status-tag.partial { background: #f39c12; color: #fff; }
+
+  details {
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #d5e8dc;
+  }
+  summary {
+    cursor: pointer;
+    background: #2ecc71;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 16px;
+    list-style: none;
+    font-size: 14.5px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary:before {
+    content: "▶ ";
+    font-size: 11px;
+  }
+  details[open] summary:before {
+    content: "▼ ";
+  }
+
+  summary.answer-summary {
+    background: rgba(120,120,120,0.3);
+    color: #fff;
+    font-weight: 500;
+    font-size: 13.5px;
+  }
+  .detail-body {
+    padding: 16px 18px;
+    background: #fbfdfc;
+    font-size: 15px;
+  }
+  .hint-box {
+    background: #fff8dc;
+    border: 1px solid #f0d97a;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-size: 14.5px;
+  }
+  .hint-box .label {
+    font-weight: 700;
+    color: #a8791b;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .why-box {
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 14px;
+    font-size: 14.5px;
+  }
+  .why-box .label {
+    font-weight: 700;
+    color: #3730a3;
+    margin-bottom: 8px;
+    display: block;
+    font-size: 15px;
+  }
+  .why-box p { margin: 8px 0; }
+  .grammar-formula {
+    background: #f1f5ff;
+    border-left: 4px solid #2f5fe0;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-weight: 600;
+    border-radius: 6px;
+  }
+  .compare-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 10px 0;
+    background: #fff;
+    border: 1px dashed #c3cbe0;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .compare-box .line {
+    padding: 4px 0;
+  }
+  .compare-box .line b { color: #2f5fe0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>홍재윤 오답 피드백</h1>
+  <p>가정법 과거완료 &amp; 관계부사 · 2026.07.07</p>
+</div>
+
+<div class="container">
+
+  <div class="section-title">PRACTICE A</div>
+  <div class="section-sub">가정법 과거완료 - 괄호 안의 단어를 알맞은 형태로 바꾸어 빈칸에 쓰시오</div>
+
+  <!-- Q1 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">1</div>
+      <div class="q-sentence">(be) If I <span class="blank">______</span> there, I could have helped your friends.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> been</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>이 문장은 "내가 거기 있었다면 네 친구들을 도와줄 수 있었을 텐데"라는 뜻으로, 과거에 실제로는 그 자리에 없었던 사실을 반대로 가정하는 문장이야. 이렇게 <b>과거 사실의 반대</b>를 가정할 때는 가정법 과거완료를 쓰는데, 공식은 다음과 같아.</p>
+        <div class="grammar-formula">If + 주어 + had + 과거분사 ~, 주어 + would/could/might + have + 과거분사</div>
+        <p>if절 안에 있는 빈칸이니까 "had"와 "been"을 같이 써서 <b>had been</b>이라고 써야 완전한 형태가 돼.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          if절 안의 동사가 "was/were" 형태로 시작한다면, 가정법 과거완료에서는 그 앞에 "had"를 붙여서 "had been"으로 바꿔줘야 해.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이가 빈칸에 쓴 답은 "been"이야. 문장을 해석해보면 "내가 거기 있었다면"이라는 가정인데, 이건 과거에 실제로 없었던 상황을 반대로 가정하는 거라서 if절에는 반드시 "had"와 과거분사가 같이 나와야 해. 재윤이는 "had"를 빼고 "been"만 써서 "If I been there"라고 쓴 셈인데, 이렇게 되면 "was"도 아니고 "had been"도 아닌 문법적으로 완성되지 않은 형태가 돼버려. 앞으로 가정법 과거완료 문제를 풀 때는 if절 빈칸에 "had"를 먼저 쓰고 그 뒤에 과거분사를 이어서 쓴다는 순서를 기억하면 좋겠어.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>had been</b></div>
+    </details>
+  </div>
+
+  <!-- Q2 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">2</div>
+      <div class="q-sentence">(finish) If I <span class="blank">______</span> this magazine, I would have lent it to you.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> finished</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"내가 이 잡지를 다 읽었다면 너에게 빌려줬을 텐데"라는 뜻으로, 과거에 실제로는 잡지를 다 읽지 않았다는 사실의 반대를 가정하는 문장이야. 이 문제도 1번과 같은 구조로, if절 자리에는 "had + 과거분사"가 들어가야 해.</p>
+        <div class="grammar-formula">If + 주어 + had + 과거분사 ~, 주어 + would/could/might + have + 과거분사</div>
+        <p>정답은 <b>had finished</b>야.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          if절의 동사가 finish처럼 규칙동사라서 과거형(finished)과 과거분사형(finished)이 똑같아 보이는 경우, "had"를 빼먹기 더 쉬워. 형태가 같아 보여도 "had"는 꼭 챙겨야 해.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 "finished"라고만 썼어. finish의 과거형과 과거분사형이 둘 다 "finished"라서 그냥 과거형을 쓰면 될 것 같다고 생각했을 수 있는데, 가정법 과거완료의 if절에서는 단순히 "과거형"을 쓰는 게 아니라 "had + 과거분사" 형태를 통째로 써야 해. "finished" 하나만 쓰면 이게 단순과거인지 그냥 과거분사인지 구분이 안 되고, 문장 전체가 가정법 과거완료 공식에 맞지 않게 돼버려. 1번 문제와 똑같은 패턴의 실수니까, "if절에는 항상 had가 먼저"라는 규칙을 확실히 익혀두면 좋겠어.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>had finished</b></div>
+    </details>
+  </div>
+
+  <!-- Q3 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">3</div>
+      <div class="q-sentence">(accept) If we had had more time, we <span class="blank">______</span> the offer.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> accept</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"우리에게 시간이 더 있었다면 그 제안을 받아들일 수 있었을 텐데"라는 뜻이야. 이번엔 빈칸이 if절이 아니라 <b>주절(결과절)</b>에 있다는 점이 다른데, 가정법 과거완료의 주절 공식은 다음과 같아.</p>
+        <div class="grammar-formula">주어 + could/would/might + have + 과거분사</div>
+        <p>여기서는 "~할 수 있었을 텐데"라는 의미이므로 could를 쓰고, 정답은 <b>could have accepted</b>가 돼.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          주절 빈칸에서는 "조동사(could/would/might) + have + 과거분사"를 하나의 덩어리로 통째로 써야 해. 조동사나 have를 빼고 동사만 쓰면 안 돼.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 빈칸에 "accept"라고 원형만 썼어. 이 문장은 if절에 이미 "had had"라는 가정법 과거완료 형태가 나와 있으니까, 주절도 그에 맞춰서 "could have accepted"라는 형태가 되어야 하는데, 재윤이는 조동사 "could"와 "have"를 둘 다 빼고 동사원형만 쓴 거야. if절과 짝을 이루는 주절에서는 "조동사 + have + 과거분사"가 하나의 세트로 움직인다는 걸 기억하고, if절만 보고 답을 쓰는 게 아니라 주절에 필요한 형태가 무엇인지도 따로 확인하는 습관을 들이면 좋겠어.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>could have accepted</b></div>
+    </details>
+  </div>
+
+  <!-- Q4 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">4</div>
+      <div class="q-sentence">(take) If he <span class="blank">______</span> the train, he could have arrived earlier.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> took</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"그가 기차를 탔더라면 더 일찍 도착할 수 있었을 텐데"라는 뜻이야. 주절에 이미 "could have arrived"라는 가정법 과거완료 형태가 있으니까, if절도 짝을 맞춰서 "had taken"이 되어야 해.</p>
+        <div class="grammar-formula">If + 주어 + had + 과거분사 ~, 주어 + could + have + 과거분사</div>
+        <p>정답은 <b>had taken</b>이야.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          주절에 "could have arrived"처럼 완성된 가정법 과거완료 형태가 보이면, if절도 반드시 "had + 과거분사" 형태여야 짝이 맞는다는 걸 확인하는 습관을 들이면 좋아.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 "took"이라고 단순과거형으로 썼어. take의 과거형은 took, 과거분사형은 taken으로 서로 다른데, 재윤이가 과거형인 took을 써버린 거야. 이 문장의 주절에 이미 "could have arrived"라는 가정법 과거완료 형태가 나와 있으니까, if절도 똑같이 "had + 과거분사"로 맞춰줘야 해서 "had taken"이 정답이 돼. 1번, 2번 문제와 마찬가지로 if절에서 "had"를 빠뜨린 것과 더불어, take처럼 불규칙동사는 과거형(took)과 과거분사형(taken)이 다르다는 점까지 같이 챙겨야 하는 문제였어.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>had taken</b></div>
+    </details>
+  </div>
+
+  <!-- Q5 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">5</div>
+      <div class="q-sentence">(write) If I had known your address, I <span class="blank">______</span> you a letter.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> write</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"내가 네 주소를 알았더라면 편지를 써서 보냈을 텐데"라는 뜻이야. 3번 문제와 마찬가지로 빈칸이 주절에 있으니까 "조동사 + have + 과거분사" 형태가 필요해.</p>
+        <div class="grammar-formula">주어 + would + have + 과거분사</div>
+        <p>정답은 <b>would have written</b>이야.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          write의 3단 변화는 write - wrote - written이야. 가정법 과거완료 주절에서는 과거분사형인 written을 써야 해.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 빈칸에 "write"라고 원형만 썼어. 3번 문제(accept)와 똑같은 유형의 실수로, 주절에 필요한 "would have + 과거분사" 세트에서 "would"와 "have"를 둘 다 빼먹은 거야. 게다가 write는 불규칙동사라서 과거분사형이 written으로 형태가 완전히 바뀌는데, 이 부분까지 함께 신경 써야 해. 주절 빈칸을 볼 때는 항상 "조동사 + have + 과거분사" 세 조각이 다 있는지 스스로 점검하는 게 도움이 될 거야.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>would have written</b></div>
+    </details>
+  </div>
+
+  <!-- Q6 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">6</div>
+      <div class="q-sentence">(prevent) If he had been more careful, he <span class="blank">______</span> the accident.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> prevent</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"그가 더 조심했더라면 그 사고를 막을 수 있었을 텐데"라는 뜻이야. if절에 이미 "had been"이 나와 있으니, 주절은 "could have prevented"가 되어야 해.</p>
+        <div class="grammar-formula">주어 + could + have + 과거분사</div>
+        <p>정답은 <b>could have prevented</b>야.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          "막을 수 있었을 텐데"처럼 가능성/능력을 나타낼 때는 would가 아니라 could를 쓰는 경우가 많아. 문장의 우리말 의미를 보고 조동사를 고르는 연습을 해보자.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 이번에도 "prevent"라고 원형만 썼어. 3번, 5번 문제와 똑같이 조동사와 have를 빼고 동사원형만 쓰는 패턴이 반복되고 있어. if절에 "had been more careful"이라는 가정법 과거완료 형태가 나오면, 주절에도 반드시 "could have prevented"처럼 조동사와 have가 붙은 완전한 형태가 와야 한다는 걸 다시 한번 기억하면 좋겠어. 이 문제까지 포함하면 재윤이가 주절 빈칸에서 조동사+have를 빠뜨린 문제가 벌써 세 번째야.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>could have prevented</b></div>
+    </details>
+  </div>
+
+  <!-- Q7 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">7</div>
+      <div class="q-sentence">(try) If you <span class="blank">______</span> harder, you could have succeeded.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> tried</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"네가 더 노력했더라면 성공할 수 있었을 텐데"라는 뜻이야. 주절에 "could have succeeded"가 나와 있으니 if절은 "had tried"가 되어야 해.</p>
+        <div class="grammar-formula">If + 주어 + had + 과거분사 ~, 주어 + could + have + 과거분사</div>
+        <p>정답은 <b>had tried</b>야.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          try의 과거형과 과거분사형은 둘 다 tried로 똑같아. 형태가 같다고 해서 "had"를 생략하면 안 된다는 걸 꼭 기억하자.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 "tried"라고만 썼어. 2번 문제(finish)와 똑같은 유형인데, try 역시 과거형과 과거분사형이 tried로 형태가 같다 보니 "had"만 빠뜨리면 얼핏 봐도 문장이 자연스러워 보여서 놓치기 쉬워. 하지만 가정법 과거완료의 if절은 형태가 같아 보이는 동사라도 무조건 "had + 과거분사"로 써야 하니까, "tried" 앞에 "had"를 붙이는 걸 잊지 않는 연습이 필요해.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>had tried</b></div>
+    </details>
+  </div>
+
+  <!-- Q8 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">8</div>
+      <div class="q-sentence">(meet) If Daniel had kept his promise, I <span class="blank">______</span> him.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> meet</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"Daniel이 약속을 지켰더라면 내가 그를 만났을 텐데"라는 뜻이야. if절에 "had kept"가 있으니 주절은 "would have met"이 되어야 해.</p>
+        <div class="grammar-formula">주어 + would + have + 과거분사</div>
+        <p>정답은 <b>would have met</b>이야.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          meet의 3단 변화는 meet - met - met이야. 과거분사형인 met을 "would have" 뒤에 붙여줘야 해.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 빈칸에 "meet"라고 원형만 썼어. 이 문제도 3번, 5번, 6번과 같은 패턴으로 주절에서 조동사와 have를 빼고 동사원형만 쓴 거야. 이렇게 원형만 쓰는 실수가 A번 문제 전체에서 반복되고 있는 걸 보면, 재윤이가 아직 "가정법 과거완료의 주절은 조동사+have+과거분사가 하나의 세트"라는 공식 자체를 완전히 외우지 못한 것 같아. 다음에는 주절 빈칸을 볼 때마다 "조동사 – have – 과거분사" 세 칸을 순서대로 다 채웠는지 체크리스트처럼 확인해보면 좋겠어.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>would have met</b></div>
+    </details>
+  </div>
+
+  <!-- Q9 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">9</div>
+      <div class="q-sentence">(hear) If she <span class="blank">______</span> the reason, she would not have been so angry.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> heared</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"그녀가 이유를 들었더라면 그렇게 화나지 않았을 텐데"라는 뜻이야. 주절에 "would not have been"이 나와 있으니 if절은 "had heard"가 되어야 해.</p>
+        <div class="grammar-formula">If + 주어 + had + 과거분사 ~, 주어 + would not + have + 과거분사</div>
+        <p>정답은 <b>had heard</b>야.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          hear는 불규칙동사로 3단 변화가 hear - heard - heard야. "heared"라는 형태는 영어에 존재하지 않으니 꼭 heard로 외워두자.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 "heared"라고 썼는데, 여기엔 두 가지 문제가 겹쳐 있어. 첫째는 다른 문제들처럼 if절에서 "had"를 빠뜨린 것이고, 둘째는 hear의 과거분사형을 규칙동사처럼 -ed를 붙여서 "heared"라고 잘못 만든 거야. hear는 불규칙동사라서 과거형과 과거분사형이 모두 heard이고, heared라는 단어 자체가 존재하지 않아. 그래서 이 문제는 "had"를 챙기는 것과 동시에 heard라는 올바른 철자를 함께 기억해야 해.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>had heard</b></div>
+    </details>
+  </div>
+
+  <!-- Q10 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">10</div>
+      <div class="q-sentence">(come) If she had not been busy, she <span class="blank">______</span> to my birthday party.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> come</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"그녀가 바쁘지 않았더라면 내 생일파티에 왔을 텐데"라는 뜻이야. if절에 "had not been"이 있으니 주절은 "would have come"이 되어야 해.</p>
+        <div class="grammar-formula">주어 + would + have + 과거분사</div>
+        <p>정답은 <b>would have come</b>이야.</p>
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          come의 3단 변화는 come - came - come이라서 원형과 과거분사형이 똑같이 생겼어. 그래서 "come"이라고만 쓰면 얼핏 맞아 보이지만, 앞에 "would have"가 빠지면 여전히 틀린 답이 돼.
+        </div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 "come"이라고만 썼어. come은 원형과 과거분사형이 똑같이 생겨서 얼핏 보면 맞는 것 같아 보일 수 있는데, 문제는 앞에 있어야 할 "would have"가 통째로 빠졌다는 점이야. 정답은 "would have come"인데 재윤이는 "would have"를 쓰지 않고 "come"만 남긴 거지. A번 전체에서 계속 나온 패턴처럼, 주절에서는 동사 형태만 신경 쓸 게 아니라 그 앞의 조동사와 have까지 통째로 하나의 표현으로 봐야 한다는 걸 다시 강조하고 싶어.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>would have come</b></div>
+    </details>
+  </div>
+
+  <div class="section-title">PRACTICE B</div>
+  <div class="section-sub">관계부사 - 주어진 두 문장을 관계부사를 이용하여 한 문장으로 쓰시오</div>
+
+  <!-- B Q1 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">1</div>
+      <div class="q-sentence">Sunday is the day. He can take a rest on that day.</div>
+      <span class="status-tag partial">부분오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> Sunday is the day when He can take a rest</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"on that day"라는 시간을 나타내는 표현을 관계부사 "when"으로 바꿔서 두 문장을 하나로 연결하는 문제야. day처럼 시간을 나타내는 선행사 뒤에는 관계부사 when을 쓴다는 걸 정확히 적용했어.</p>
+        <div class="grammar-formula">시간 선행사(the day) + when + 완전한 문장</div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이가 쓴 문장은 "Sunday is the day when He can take a rest"인데, 관계부사 when을 사용한 것 자체는 정확히 맞았어. 다만 문장 중간에 나오는 주어 "He"를 대문자로 쓰고, 문장 끝에 마침표를 찍지 않은 두 가지 작은 실수가 있었어. 문장 중간에서는 고유명사나 대명사 I를 제외하고는 소문자로 써야 하니까 "he"로 고쳐야 하고, 완성된 문장 뒤에는 항상 마침표를 붙이는 습관을 들이면 좋겠어. 문법 자체는 정확히 이해하고 있으니 이런 사소한 표기 실수만 줄이면 완벽한 문장이 될 거야.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>Sunday is the day when he can take a rest.</b></div>
+    </details>
+  </div>
+
+  <!-- B Q2 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">2</div>
+      <div class="q-sentence">This is the house. I lived in this house in my childhood.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> This is the house where I lived.</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"in this house"라는 장소 표현을 관계부사 "where"로 바꾸는 문제야. 이때 원래 두 번째 문장에 있던 "in my childhood"(어린 시절에)라는 시간 정보는 관계부사로 대체되는 부분이 아니라서, 관계사절 뒤에 그대로 남겨줘야 해.</p>
+        <div class="grammar-formula">장소 선행사(the house) + where + 완전한 문장 (+ 남은 부가정보)</div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 "This is the house where I lived."라고 썼어. where를 사용해서 문장을 연결한 부분은 정확한데, 원래 문장에 있던 "in my childhood"(어린 시절에)라는 표현을 통째로 빠뜨렸어. "in this house"는 where로 바뀌면서 없어지는 게 맞지만, "in my childhood"는 house와는 상관없는 별개의 시간 정보라서 관계부사가 대신해주지 않아. 그래서 이 부분은 그대로 문장 뒤에 남겨서 "This is the house where I lived in my childhood."라고 써야 완전한 문장이 돼. 두 문장을 합칠 때는 관계사로 바뀌는 부분과 그대로 남아야 하는 부분을 구분하는 연습이 필요해.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>This is the house where I lived in my childhood.</b></div>
+    </details>
+  </div>
+
+  <!-- B Q3 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">3</div>
+      <div class="q-sentence">The teacher doesn't know the reason. Tim is late for that reason.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> The teacher doesn't know the reason why Tim is late for that reason</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"for that reason"이라는 이유를 나타내는 표현을 관계부사 "why"로 바꾸는 문제야. 이때 why 자체가 이미 "for that reason"의 역할을 대신하고 있기 때문에, 원래 있던 "for that reason"은 문장에서 사라져야 해.</p>
+        <div class="grammar-formula">이유 선행사(the reason) + why + 완전한 문장 (for that reason은 삭제)</div>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 "The teacher doesn't know the reason why Tim is late for that reason"이라고 썼어. why를 사용해서 두 문장을 연결한 건 정확한데, 문제는 문장 맨 끝에 "for that reason"을 그대로 남겨뒀다는 점이야. "why"는 원래 두 번째 문장에 있던 "for that reason"을 대신하는 말이기 때문에, why를 쓰고 나면 "for that reason"은 문장에서 완전히 없어져야 해. 그런데 재윤이는 why와 for that reason을 둘 다 남겨서, 결과적으로 "이유 때문에 늦다" 라는 말이 문장 안에 두 번 반복되는 셈이 됐어. 관계부사로 문장을 연결할 때는, 원래 문장에서 관계부사가 대신하는 표현을 반드시 지워야 한다는 걸 꼭 기억하면 좋겠어.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>The teacher doesn't know the reason why Tim is late.</b></div>
+    </details>
+  </div>
+
+  <!-- B Q4 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">4</div>
+      <div class="q-sentence">I want to know the way. Maria lost weight in that way.</div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+    <div class="student-answer-box wrong"><span class="label">재윤이의 답:</span> I want to know the way how Maria lost weight in that way.</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"in that way"라는 방법을 나타내는 표현을 관계부사 "how"로 바꾸는 문제야. 그런데 방법을 나타내는 관계부사 how는 다른 관계부사(when, where, why)와 다른 특별한 규칙이 하나 있어.</p>
+        <div class="grammar-formula">the way와 how는 절대 함께 쓸 수 없음 (the way how ✗)</div>
+        <p>선행사 "the way"와 관계부사 "how"는 의미가 겹치기 때문에, 영어에서는 둘 중 하나만 써야 해. "the way Maria lost weight"라고 선행사만 쓰거나, "how Maria lost weight"라고 관계부사만 쓰는 것 둘 다 가능하지만, "the way how" 이렇게 같이 쓰는 건 문법적으로 허용되지 않아.</p>
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 "I want to know the way how Maria lost weight in that way."라고 썼는데, 여기에는 두 가지 실수가 겹쳐 있어. 첫째, 선행사 "the way"와 관계부사 "how"를 동시에 써버렸어. when, where, why는 선행사(the day, the house, the reason)와 함께 쓸 수 있지만, way와 how만은 예외적으로 절대 같이 쓸 수 없다는 특별 규칙이 있어. 그래서 "the way how"라는 표현 자체가 존재하지 않는 형태야. 둘째, 문장 맨 끝에 원래 문장에 있던 "in that way"까지 그대로 남겨뒀는데, 이건 3번 문제의 "for that reason"과 똑같은 실수로, how(또는 the way)가 이미 "in that way"의 의미를 대신하고 있으니 지워줘야 해. 정리하면 the way와 how 중 하나만 고르고, in that way는 완전히 삭제해서 "I want to know how Maria lost weight."라고 쓰면 돼.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>I want to know how Maria lost weight.</b> (또는 I want to know the way Maria lost weight.)</div>
+    </details>
+  </div>
+
+  <!-- B Q5 -->
+  <div class="card correct">
+    <div class="q-head">
+      <div class="badge">5</div>
+      <div class="q-sentence">This is the place. A fireworks festival will be held at this place.</div>
+      <span class="status-tag correct">정답</span>
+    </div>
+    <div class="student-answer-box correct"><span class="label">재윤이의 답:</span> This is the place where a fireworks festival will be held.</div>
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>"at this place"라는 장소 표현을 관계부사 "where"로 정확히 바꾸고, 원래 있던 "at this place"도 깔끔하게 지워서 완전한 문장을 만들었어. 2번 문제와 같은 유형인데, 이번엔 부가정보 없이 딱 필요한 정보만 있는 문장이라 실수 없이 완벽하게 해냈어. 이 문제를 맞힌 방식 그대로, 2번과 3번, 4번 문제에서도 "관계부사로 바뀐 표현은 완전히 지운다"는 원칙을 똑같이 적용하면 돼.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="section-title">관계사 최종 확인</div>
+  <div class="section-sub">오오답 피드백 (드디어! 끝)</div>
+
+  <!-- Q1 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">1</div>
+      <div>
+        <div class="q-instruction">문제 34. 다음 우리말을 바르게 바꾼 것은?</div>
+        <div class="q-sentence">내가 사는 마을에는 큰 떡갈나무가 있다.</div>
+      </div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+
+    <div class="options">
+      <div class="opt answer">① The town where I live has a big oak tree.</div>
+      <div class="opt">② The town in which I live has a big oak tree.</div>
+      <div class="opt">③ The town which I live has a big oak tree.</div>
+      <div class="opt">④ The town I live in has a big oak tree.</div>
+      <div class="opt chosen">⑤ The town in that I live has a big oak tree. ← 재윤이의 선택</div>
+    </div>
+
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>이 문제는 "마을에는 ~ 있다"라는 우리말을 영어로 바르게 옮긴 것을 고르는 문제야. 핵심은 "마을에 산다"는 "live in the town"이라는 <b>전치사 in</b>이 붙는 표현이라는 점이고, 이 전치사를 관계사절에서 어떻게 처리하느냐에 따라 문장이 맞기도 하고 틀리기도 해.</p>
+
+        <div class="grammar-formula">장소 선행사(the town) + where + 완전한 문장 (전치사 없이)</div>
+        <p>①번 "The town <b>where</b> I live has a big oak tree."는 관계부사 where를 써서 "in the town"을 통째로 대신한 형태야. where 뒤에는 전치사 없이 완전한 문장(I live)이 오니까 정확한 문장이야.</p>
+
+        <div class="grammar-formula">장소 선행사(the town) + 전치사 + which + 완전한 문장</div>
+        <p>②번 "The town <b>in which</b> I live has a big oak tree."는 "전치사 + which"를 관계부사 대신 쓴 형태야. "in which"는 where와 똑같은 역할을 하기 때문에 이것도 맞는 문장이야.</p>
+
+        <p>④번 "The town I live <b>in</b> has a big oak tree."는 관계대명사(which/that)를 생략하고, 원래 있던 전치사 in을 문장 맨 끝에 남겨둔 형태야. 이것도 영어에서 자주 쓰는 자연스러운 표현이라 맞는 문장이야.</p>
+
+        <div class="compare-box">
+          <div class="line">③번: The town <b>which</b> I live has a big oak tree. → live 뒤에 전치사 in이 통째로 사라짐</div>
+          <div class="line">→ live는 "~에 산다"라는 뜻으로 반드시 전치사 in이 필요한 동사인데, ③번은 관계대명사 which만 쓰고 전치사 in을 어디에도 남기지 않아서 틀린 문장이야.</div>
+        </div>
+
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          관계대명사 who, which는 전치사 뒤에 바로 올 수 있어 ("in which", "with whom"처럼). 하지만 관계대명사 <b>that은 전치사 바로 뒤에 절대 올 수 없어</b>. "in that", "with that"이라는 표현 자체가 영어 문법에 존재하지 않아.
+        </div>
+
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 ⑤번 "The town <b>in that</b> I live has a big oak tree."를 골랐어. 아마 ②번의 "in which"를 보고 "전치사 + 관계사" 형태가 맞다는 건 이해했는데, that도 which처럼 전치사 뒤에 쓸 수 있는 관계대명사라고 착각한 것 같아. 하지만 which, who는 전치사 뒤에 바로 쓸 수 있는 반면, that은 그렇게 쓰일 수 없다는 게 정해진 규칙이야. 그래서 "in that"이라는 조합 자체가 성립하지 않고, 이 문장은 항상 틀린 표현이 돼.</p>
+          <p>정리하면, 전치사 뒤에 관계대명사를 쓰고 싶을 때는 which나 whom은 되지만 that은 절대 안 된다는 걸 기억하면 좋겠어. 반대로 관계대명사를 생략하거나 that을 쓰고 싶다면, ④번처럼 전치사를 문장 맨 끝으로 보내야 해.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>① The town where I live has a big oak tree.</b> (②, ④번도 문법적으로는 맞는 표현이지만, that을 전치사 뒤에 쓴 ⑤번은 확실한 오답)</div>
+    </details>
+  </div>
+
+  <!-- Q2 -->
+  <div class="card wrong">
+    <div class="q-head">
+      <div class="badge">2</div>
+      <div>
+        <div class="q-instruction">문제 20. 다음 빈칸에 들어갈 말로 알맞지 않은 것은?</div>
+        <div class="q-sentence">The child ___ is my son.</div>
+      </div>
+      <span class="status-tag wrong">오답</span>
+    </div>
+
+    <div class="options">
+      <div class="opt">① everyone loves</div>
+      <div class="opt answer">② played the violin</div>
+      <div class="opt">③ chasing butterflies</div>
+      <div class="opt">④ whose jacket is red</div>
+      <div class="opt chosen">⑤ who helped the kitten ← 재윤이의 선택</div>
+    </div>
+
+    <details>
+      <summary>상세 해설</summary>
+      <div class="detail-body">
+        <p>이 문제는 "알맞지 <b>않은</b> 것"을 고르는 문제, 즉 5개 중에 문법적으로 <b>말이 안 되는 것 하나</b>를 찾는 문제야. 각 보기를 빈칸에 넣어서 하나씩 확인해볼게.</p>
+
+        <div class="compare-box">
+          <div class="line">①번: The child <b>everyone loves</b> is my son. → "내 아들"을 everyone이 사랑한다는 뜻</div>
+          <div class="line">여기서는 목적격 관계대명사(whom)가 생략된 형태야. "everyone loves the child"에서 the child가 목적어였으니까, whom을 생략하고 "everyone loves"만 남겨도 문법적으로 문제없어.</div>
+        </div>
+
+        <div class="compare-box">
+          <div class="line">③번: The child <b>chasing butterflies</b> is my son. → "나비를 쫓고 있는 아이"라는 뜻</div>
+          <div class="line">이건 관계대명사절이 아니라 현재분사구(chasing butterflies)가 the child를 뒤에서 꾸며주는 형태야. "who is chasing butterflies"를 줄인 것과 같은 효과라서 문법적으로 정확해.</div>
+        </div>
+
+        <div class="compare-box">
+          <div class="line">④번: The child <b>whose jacket is red</b> is my son. → "재킷이 빨간 아이"라는 뜻</div>
+          <div class="line">whose는 소유격 관계대명사라서 뒤에 완전한 문장(jacket is red)이 오는 게 맞아. 문법적으로 정확한 문장이야.</div>
+        </div>
+
+        <div class="compare-box">
+          <div class="line">⑤번: The child <b>who helped the kitten</b> is my son. → "새끼고양이를 도와준 아이"라는 뜻</div>
+          <div class="line">who가 주어 자리에 들어가서 "who helped the kitten"이라는 완전한 관계대명사절을 만들었어. 이것도 문법적으로 정확한 문장이야.</div>
+        </div>
+
+        <div class="grammar-formula">주격 관계대명사(who/that)는 생략할 수 없음 — 목적격 관계대명사만 생략 가능</div>
+        <div class="compare-box">
+          <div class="line">②번: The child <b>played the violin</b> is my son.</div>
+          <div class="line">→ 여기서 played 앞에 있어야 할 것은 "the child가 바이올린을 연주했다"라는 문장의 <b>주어 역할을 하는 관계대명사(who)</b>야. 그런데 ②번에는 who가 아예 빠져 있어.</div>
+        </div>
+        <p>①번처럼 관계대명사가 목적어 역할을 할 때는 생략해도 괜찮지만, ②번처럼 관계대명사가 <b>주어 역할</b>을 할 때는 생략하면 절대 안 돼. who 없이 "The child played the violin is my son."이라고 쓰면, 마치 문장 두 개(The child played the violin. / is my son.)를 아무 연결어 없이 붙여놓은 것처럼 보여서 문법적으로 성립하지 않는 문장이 돼.</p>
+
+        <div class="hint-box">
+          <span class="label">💡 개념 힌트</span>
+          관계대명사가 생략 가능한지 확인하려면, 빈칸에 들어갈 표현이 "주어 역할"인지 "목적어 역할"인지 먼저 확인해봐. 목적어 역할이면 생략 가능(①번처럼), 주어 역할이면 절대 생략 불가능(②번은 이 규칙을 어김)!
+        </div>
+
+        <div class="why-box">
+          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
+          <p>재윤이는 ⑤번 "who helped the kitten"을 골랐어. 그런데 ⑤번을 빈칸에 넣어서 해석해보면 "새끼고양이를 도와준 아이는 내 아들이다"라는 뜻이 되고, who가 주어 자리에 정확히 들어가 있어서 문법적으로 전혀 문제가 없는 문장이야. 아마 재윤이는 "who helped"라는 관계대명사절이 나머지 보기들(everyone loves, chasing butterflies, whose jacket is red)과 형태가 조금 다르게 생겨서 "이질적인 것 = 어색한 것"이라고 판단했을 수도 있어. 하지만 이 문제에서 찾아야 하는 건 형태가 다른 것이 아니라 <b>문법적으로 성립하지 않는 것</b>이야.</p>
+          <p>실제로 어색한 문장은 ②번 "played the violin"이야. 이 자리엔 반드시 "who played the violin"처럼 주어 역할의 관계대명사가 있어야 하는데 who가 빠져 있어서, "The child played the violin is my son"이라는 문장 자체가 성립하지 않아. 다음부터는 보기들을 볼 때 "이 관계대명사가 생략된 게 문법적으로 허용되는 자리인지" 스스로 확인하는 습관을 들이면 좋겠어.</p>
+        </div>
+      </div>
+    </details>
+    <details>
+      <summary class="answer-summary">정답 확인</summary>
+      <div class="detail-body"><b>② played the violin</b> (주격 관계대명사 who가 빠져서 문법적으로 성립하지 않는 문장)</div>
+    </details>
+  </div>
+
+
+</div>
+</body>
+</html>
