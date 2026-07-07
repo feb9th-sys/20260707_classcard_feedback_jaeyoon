@@ -121,6 +121,9 @@
     margin-left: 8px;
   }
   .status-tag.wrong { background: #e74c3c; color: #fff; }
+  .status-tag.unanswered { background: #9ca3af; color: #fff; }
+  .card.unanswered { border-left: 6px solid #9ca3af; }
+
   .status-tag.correct { background: #2ecc71; color: #fff; }
   .status-tag.partial { background: #f39c12; color: #fff; }
 
@@ -704,14 +707,14 @@
   </div>
 
   <!-- Q2 -->
-  <div class="card wrong">
+  <div class="card unanswered">
     <div class="q-head">
       <div class="badge">2</div>
       <div>
         <div class="q-instruction">문제 20. 다음 빈칸에 들어갈 말로 알맞지 않은 것은?</div>
         <div class="q-sentence">The child ___ is my son.</div>
       </div>
-      <span class="status-tag wrong">오답</span>
+      <span class="status-tag unanswered">무응답</span>
     </div>
 
     <div class="options">
@@ -719,8 +722,9 @@
       <div class="opt answer">② played the violin</div>
       <div class="opt">③ chasing butterflies</div>
       <div class="opt">④ whose jacket is red</div>
-      <div class="opt chosen">⑤ who helped the kitten ← 재윤이의 선택</div>
+      <div class="opt">⑤ who helped the kitten</div>
     </div>
+    <div class="student-answer-box wrong">재윤이가 이 문제는 답을 선택하지 않았어요. 그래도 개념은 한 번 짚고 넘어갈게요!</div>
 
     <details>
       <summary>상세 해설</summary>
@@ -759,11 +763,6 @@
           관계대명사가 생략 가능한지 확인하려면, 빈칸에 들어갈 표현이 "주어 역할"인지 "목적어 역할"인지 먼저 확인해봐. 목적어 역할이면 생략 가능(①번처럼), 주어 역할이면 절대 생략 불가능(②번은 이 규칙을 어김)!
         </div>
 
-        <div class="why-box">
-          <span class="label">🔍 오답을 고른 이유 짚어보기</span>
-          <p>재윤이는 ⑤번 "who helped the kitten"을 골랐어. 그런데 ⑤번을 빈칸에 넣어서 해석해보면 "새끼고양이를 도와준 아이는 내 아들이다"라는 뜻이 되고, who가 주어 자리에 정확히 들어가 있어서 문법적으로 전혀 문제가 없는 문장이야. 아마 재윤이는 "who helped"라는 관계대명사절이 나머지 보기들(everyone loves, chasing butterflies, whose jacket is red)과 형태가 조금 다르게 생겨서 "이질적인 것 = 어색한 것"이라고 판단했을 수도 있어. 하지만 이 문제에서 찾아야 하는 건 형태가 다른 것이 아니라 <b>문법적으로 성립하지 않는 것</b>이야.</p>
-          <p>실제로 어색한 문장은 ②번 "played the violin"이야. 이 자리엔 반드시 "who played the violin"처럼 주어 역할의 관계대명사가 있어야 하는데 who가 빠져 있어서, "The child played the violin is my son"이라는 문장 자체가 성립하지 않아. 다음부터는 보기들을 볼 때 "이 관계대명사가 생략된 게 문법적으로 허용되는 자리인지" 스스로 확인하는 습관을 들이면 좋겠어.</p>
-        </div>
       </div>
     </details>
     <details>
